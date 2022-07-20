@@ -1,0 +1,37 @@
+pipeline {
+     agent any
+     stages {
+         stage('init') {
+             steps {
+                 sh '''
+                    cd ./jenkins-tf-demo
+
+                    terraform init
+                  '''
+
+             }
+         }
+         stage('plan') {
+             steps {
+                 sh '''
+                     cd ./jenkins-tf-demo
+                     terraform plan
+                   '''
+             }
+         }
+          stage('apply') {
+             steps {
+                 sh '''
+                      cd ./jenkins-tf-demo
+                     terraform apply -auto-approve
+                 '''
+             }
+         }
+
+
+         }
+     }
+
+
+
+
