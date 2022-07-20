@@ -1,0 +1,35 @@
+pipeline {
+     agent any
+     stages {
+         stage('init') {
+             steps {
+                 sh '''
+                    cd .
+
+                    terraform init
+                  '''
+
+             }
+         }
+         stage('plan') {
+             steps {
+                 sh '''
+                     cd .
+                     terraform plan
+                   '''
+             }
+         }
+          stage('apply') {
+             steps {
+                 sh '''
+                      cd .
+                     terraform apply -auto-approve
+                 '''
+             }
+         }
+
+
+         }
+     }
+
+
